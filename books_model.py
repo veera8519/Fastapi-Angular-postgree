@@ -10,13 +10,15 @@ class Book:
     description:str
     author:str
     rating:int
+    published_date:int
 
-    def __init__(self,id,title,description,author,rating):
+    def __init__(self,id,title,description,author,rating,published_date):
         self.id=id
         self.title=title
         self.description=description
         self.author=author
         self.rating=rating
+        self.published_date=published_date
 
 
 class BookRequest(BaseModel):
@@ -25,12 +27,12 @@ class BookRequest(BaseModel):
     author:str=Field(min_length=1)
     description:str=Field(min_length=1,max_length=100)
     rating:int=Field(gt=-1,lt=6)
-    
+    published_dateL:int=Field(gt=1999,lt=2031)
  
-BOOKS=[Book(1,"Title One","Description One","Author One",5),
-       Book(2,"Title Two","Description Two","Author Two",4),
-       Book(3,"Title Three","Description Three","Author Three",3),
-       Book(4,"Title Four","Description Four","Author Four",2)]
+BOOKS=[Book(1,"Title One","Description One","Author One",5,2030),
+       Book(2,"Title Two","Description Two","Author Two",4,2030),
+       Book(3,"Title Three","Description Three","Author Three",3,2020),
+       Book(4,"Title Four","Description Four","Author Four",2,2025)]
 
 @app.get("/books/")
 
