@@ -57,6 +57,15 @@ def read_book_by_rating(book_rating:int):
     return books_to_return
 
 
+@app.get("/books/publish/")
+def read_all_books_by_publish_date(published_date:int):
+    books_to_return=[]
+    for book in BOOKS:
+        if book.published_date==published_date:
+            books_to_return.append(book)
+    return books_to_return
+
+
 @app.post("/create-book")
 def create_book(book_request:BookRequest):
     print(type(book_request))
