@@ -11,6 +11,7 @@ class BooksTable(Base):
     description=Column(String)
     author=Column(String)
     rating=Column(Integer)
+    # published_date (renamed to publish_year)
     publish_year=Column(Integer)
 
         
