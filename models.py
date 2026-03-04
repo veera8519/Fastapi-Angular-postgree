@@ -1,10 +1,11 @@
 
-from database import Base,engine
+
+from database import Base
 
 from sqlalchemy import Column,Integer,String,Float
 
 class BooksTable(Base):
-    __tabklename__="booksTable"
+    __tablename__="booksTable"
     id=Column(Integer,primary_key=True,index=True)
     title=Column(String)
     description=Column(String)
