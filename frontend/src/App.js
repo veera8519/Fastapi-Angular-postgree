@@ -140,8 +140,9 @@ function App() {
         id: Number(form.id),
         title: form.title,
         author: form.author,
-        year: Number(form.published_year),
-        category: form.description, // mapping description to category for backend
+        description: form.description,
+        rating: Number(form.rating) || 0,
+        published_year: Number(form.published_year) || 2024,
       };
       
       if (editId) {
@@ -165,9 +166,9 @@ function App() {
       id: book.id,
       title: book.title,
       author: book.author,
-      description: book.category || "", // mapping backend category to frontend description
-      rating: "", // rating not available in backend, leave empty
-      published_year: book.year || "",
+      description: book.description || "",
+      rating: book.rating || "",
+      published_year: book.published_year || "",
     });
     setEditId(book.id);
     setMessage("");
@@ -182,7 +183,7 @@ function App() {
     setMessage("");
     setError("");
     try {
-      await api.delete(`/books/delee_book/${id}`);
+      await api.delete(`/books/${id}`);
       setMessage("Book deleted successfully");
       fetchBooks();
     } catch (err) {
@@ -348,9 +349,9 @@ function App() {
                         <td>{b.id}</td>
                         <td className="name-cell">{b.title}</td>
                         <td className="desc-cell">{b.author}</td>
-                        <td>{b.category || "N/A"}</td>
-                        <td><span className="qty-badge">N/A</span></td>
-                        <td>{b.year}</td>
+                        <td>{b.description || "N/A"}</td>
+                        <td><span className="qty-badge">{b.rating || "N/A"}</span></td>
+                        <td>{b.published_year}</td>
                         <td>
                           <div className="row-actions">
                             <button className="btn btn-edit" onClick={() => handleEdit(b)}>
