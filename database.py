@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-DATABASE_URL = "postgresql://postgres:root@localhost:8080/BOOKSapi"
+DATABASE_URL = "postgresql://postgres:root@localhost:5432/BOOKSapi"
 
 engine = create_engine(DATABASE_URL)
 
