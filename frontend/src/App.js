@@ -51,7 +51,9 @@ function App() {
       setBooks(res.data);
       setError("");
     } catch (err) {
-      setError("Failed to fetch books");
+      console.error("Fetch error:", err); // Log error for debugging
+      const errorMsg = err.response?.data?.detail || err.message || "Failed to fetch books";
+      setError(errorMsg);
     }
     setLoading(false);
   };
@@ -64,7 +66,9 @@ function App() {
         setBooks(res.data);
         setError("");
       } catch (err) {
-        setError("Failed to fetch books");
+        console.error("Fetch error:", err); // Log error for debugging
+        const errorMsg = err.response?.data?.detail || err.message || "Failed to fetch books";
+        setError(errorMsg);
       }
       setLoading(false);
     };
